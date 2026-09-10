@@ -1,0 +1,10 @@
+# --- Sphinx Documentation Ignored Files ---
+# Ignore the entire compiled web server output folder
+docs/build/
+
+# Ignore the automatically generated module layout blueprints
+docs/source/src.*.rst
+docs/source/modules.rst
+docs/source/src.rst
+
+.idea/
