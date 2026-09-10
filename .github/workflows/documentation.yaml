@@ -3,14 +3,20 @@ name: Generate and Deploy Documentation
 on:
   push:
     branches:
-      - main  # ⚠️ Change to 'master' if your main branch is called master
+      - main
 
 permissions:
   contents: write
   pages: write
   id-token: write
 
+# Allow only one concurrent deployment to prevent conflicts
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
+  # Job 1: Build the Sphinx HTML files
   build-docs:
     runs-on: ubuntu-latest
     steps:
@@ -21,7 +27,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-          cache: 'pip'
 
       - name: Install Dependencies
         run: |
@@ -36,4 +41,16 @@ jobs:
       - name: Upload HTML Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs/_build/html  # Matches your non-separated setup
+          path: docs/_build/html
+
+  # Job 2: Physically publish the files to the web server
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build-docs  # Wait for the build job to finish successfully first
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
