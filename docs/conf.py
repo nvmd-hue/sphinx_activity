@@ -5,6 +5,7 @@
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
+import os
 from pathlib import Path
 import sys
 
@@ -16,7 +17,8 @@ current_dir = Path(__file__).resolve().parent
 project_root = current_dir.parents[1]
 
 # 3. Inject the absolute location of your source package into the Python path
-sys.path.insert(0, str(project_root / "src"))
+sys.path.insert(0, os.path.abspath('../'))
+sys.path.insert(0, os.path.abspath('../src'))
 project = 'Sphinx_Documentation'
 copyright = '2026, Brad Nederpelt'
 author = 'Brad Nederpelt'
