@@ -2,7 +2,7 @@ name: Deploy Sphinx Documentation to Pages
 
 on:
   push:
-    branches: ["main"] # Change to "master" if your default branch is named master
+    branches: ["main"]
 
 permissions:
   contents: read
@@ -35,7 +35,10 @@ jobs:
 
       - name: Build Sphinx Documentation
         run: |
+          # 1. Force scan the src directory using the exact separate-extensions and no-toc parameters
           sphinx-apidoc -f -T -e -o docs/source src
+          
+          # 2. Compile everything cleanly into your HTML target directory
           sphinx-build -b html docs/source docs/build/html
 
       - name: Upload Artifact
