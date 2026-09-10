@@ -30,7 +30,7 @@ extensions = ['sphinx.ext.autodoc',
 ]
 
 templates_path = ['_templates']
-exclude_patterns = ['_build', 'build', 'Thumbs.db', '.DS_Store', '.venv', 'venv']
+exclude_patterns = ['Thumbs.db', '.DS_Store']
 
 
 
