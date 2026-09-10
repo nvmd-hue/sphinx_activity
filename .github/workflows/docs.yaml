@@ -35,6 +35,7 @@ jobs:
 
       - name: Build Sphinx Documentation
         run: |
+          sphinx-apidoc -f -T -e -o docs/source src
           sphinx-build -b html docs/source docs/build/html
 
       - name: Upload Artifact

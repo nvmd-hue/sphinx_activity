@@ -2,6 +2,4 @@
 .venv/
 __pycache__/
 docs/build/
-docs/source/src.*.rst
-docs/source/modules.rst
-docs/source/src.rst
+
