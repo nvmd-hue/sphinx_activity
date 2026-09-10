@@ -1,5 +1,11 @@
-.idea/
+# Python environment
 .venv/
 __pycache__/
-docs/build/
+*.pyc
+
+# PyCharm local configuration
+.idea/
+
+# Sphinx build outputs (Crucial!)
+docs/_build/
 
